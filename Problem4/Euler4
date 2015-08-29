@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool isPalindrome(int number)
+{
+	bool check = true;
+	string s = to_string(number);
+	int i = 0;
+	int j = s.size() - 1;
+	if (s.size() % 2 == 0)
+	{
+		for (i; i < s.size() / 2; i++)
+		{
+			if (s[i] != s[j])
+			{
+				check = false;
+				return check;
+			}
+			--j;
+		}
+		return true;
+	}
+	for (i; i < (s.size() / 2) ;i++)
+	{
+		if (s[i]!=s[j])
+		{
+			check = false;
+			return check;
+		}
+		--j;
+	}
+	return !check;
+}
+
+bool findTerms(int number)
+{
+	int term1 = 999;
+	int term2 = 999;
+	while (term1 >= 100)
+	{
+		term2 = 999;
+		while (term2 >= 100)
+		{
+			if (term1*term2 == number)
+			{
+				cout << term1 <<" "<< term2 <<" "<< number << endl;
+				return true;
+			}
+			--term2;
+		}
+		--term1;
+	}
+	return false;
+}
+
+int main()
+{
+	//Largest possible product of two 3 digit numbers is 999*999 = 998001
+	int limit = 998001;
+	while (limit>=10000)
+	{
+		if (isPalindrome(limit))
+		{
+			cout << limit << endl;
+			if (findTerms(limit))
+			{
+				return 0;
+			}
+		}
+		--limit;
+	}
+}
