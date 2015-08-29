@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int term1 = 1;
+	int term2 = 2;
+	int sum = 0;
+	int even_sum = 2;
+	while (term2 < 4000000)
+	{
+		sum = term1 + term2;
+		term1 = term2;
+		term2 = sum;
+		if (term2 % 2 == 0)
+		{
+			even_sum += term2;
+		}
+	}
+	cout << even_sum << endl;
+}
