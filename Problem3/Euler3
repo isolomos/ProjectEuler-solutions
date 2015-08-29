@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int findLargestPrime(long long number)
+{
+	int largestPrime = 1;
+	int divisor = 3;
+	while (number % 2 == 0)
+	{
+		largestPrime = 2;
+		number /= 2;
+	}
+	while (number > 1){
+		while (number%divisor == 0)
+		{
+			largestPrime = divisor;
+			number /= divisor;
+		}
+		divisor += 2;
+	}
+	return largestPrime;
+}
+
+
+
+int main()
+{
+	long long myNumber = 600851475143;
+	cout << findLargestPrime(myNumber) << endl;
+
+}
