@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+
+int main()
+{
+	int count = 2;
+	int number = 4;
+	int counter;
+	while (count < 10001)
+	{
+		counter = 0;
+		for (int i = 2; i < number; i++)
+		{
+			if (number%i == 0)
+			{
+				break;
+			}
+			++counter;
+		}
+		if (counter == (number - 2))
+		{
+			++count;
+		}
+		++number;
+	}
+	cout << number-1 << endl;
+}
