@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+	vector<bool> myPrimes(2000000, true);
+	myPrimes[0] = false, myPrimes[1] = false;
+
+	for (int i = 2; i*i < myPrimes.size(); ++i){
+		if (myPrimes[i] == true){
+			for (int j = 0; i*i + j*i < myPrimes.size(); ++j){
+				myPrimes[i*i + j*i] = false;
+			}
+		}
+	}
+	long long sum = 0;
+	for (int i = 1; i < myPrimes.size(); i++){
+		if (myPrimes[i] == true)
+			sum += i;
+	}
+	std::cout << sum<<endl;
+}
