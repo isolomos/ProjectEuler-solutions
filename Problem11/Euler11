@@ -1,0 +1,81 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+int main()
+{
+	ifstream input;
+	input.open("grid.txt");
+	int myarr[20][20];
+	for (int i = 0; i < 20; i++)
+	{
+		for (int j = 0; j < 20; j++)
+		{
+			input >> myarr[i][j];
+		}
+	}
+	//////////
+	long long total_product = 1;
+	long long temp_product = 1;
+	// Left - right
+	for (int i = 0; i < 19; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			temp_product = myarr[i][j] * myarr[i][j + 1] * myarr[i][j + 2] * myarr[i][j + 3];
+			if (temp_product > total_product)
+			{
+				total_product = temp_product;
+			}
+			temp_product = 1;
+		}
+	}
+
+	// Up - down
+	temp_product = 1;
+	for (int i = 0; i < 16; i++)
+	{
+		for (int j = 0; j < 19; j++)
+		{
+			temp_product = myarr[i][j] * myarr[i+1][j] * myarr[i+2][j] * myarr[i+3][j];
+			if (temp_product > total_product)
+			{
+				total_product = temp_product;
+			}
+			temp_product = 1;
+		}
+	}
+	temp_product = 1;
+
+	// Diagonally right
+	for (int i = 0; i < 16; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			temp_product = myarr[i][j] * myarr[i + 1][j+1] * myarr[i + 2][j+2] * myarr[i + 3][j+3];
+			if (temp_product > total_product)
+			{
+				total_product = temp_product;
+			}
+			temp_product = 1;
+		}
+	}
+	temp_product = 1;
+
+	// Diagonally left
+
+	for (int i = 0; i < 16; i++)
+	{
+		for (int j = 2; j < 19; j++)
+		{
+			temp_product = myarr[i][j] * myarr[i + 1][j - 1] * myarr[i + 2][j - 2] * myarr[i + 3][j - 3];
+			if (temp_product > total_product)
+			{
+				total_product = temp_product;
+			}
+			temp_product = 1;
+		}
+	}
+	cout <<total_product << endl;
+}
