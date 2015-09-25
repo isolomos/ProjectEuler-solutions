@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+	long long i = 1;
+	long long num = 0;
+	while (1)
+	{
+		num += i;
+		int nd = 2;
+
+		for (unsigned long long int n = 2; n < sqrt(num); ++n)
+			if (num % n == 0)
+				nd += 2;
+
+		if (nd > 500) {
+			cout << num << endl;
+			return 0;
+		}
+
+		++i;
+
+	}
+
+	return 0;
+
+}
