@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+int main()
+{
+	int N = 1000000; 
+	long long sequence = N;
+	int count = 1;
+	int check = 0;
+	long long number = 0; // Store the result in this variable
+
+	for (int i = N; i > 800000; --i)
+	{
+		while (sequence != 1)
+		{
+			if ((sequence % 2) == 0)
+			{
+				sequence /= 2;
+			}
+			else
+			{
+				sequence = (sequence * 3) + 1;
+			}
+			++count;
+		}
+
+		--N;
+		sequence = N;
+
+		if (check < count)
+		{
+			check = count;
+			number = sequence;
+		}
+		count = 1;
+	}
+
+	cout << number+1 << endl;
+}
