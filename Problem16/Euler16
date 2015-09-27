@@ -1,0 +1,1 @@
+sum(int(myNum) for myNum in str(2**1000))
