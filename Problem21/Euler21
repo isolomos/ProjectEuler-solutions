@@ -1,0 +1,29 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main()
+{
+ map <int, long long int> myMap;
+ for (int i = 2; i < 10000; ++i) 
+ {
+		unsigned long long int sum = 1;
+		int j = 2;
+		for(j = 2; j*j < i; ++j) { if(i % j == 0) sum += (j + i/j); }
+		if(j*j == i) sum += j;
+
+		myMap[i] = sum;
+
+ }
+
+	int sum = 0;
+
+	for(unsigned int i = 2; i < 10000; i++) 
+	{ 
+		if(i == myMap[myMap[i]] && i != myMap[i]) 
+		{ 
+			sum += i; cout << i << '\t' << myMap[i] << endl; 
+		}
+	}
+	cout << sum << endl;
+}
