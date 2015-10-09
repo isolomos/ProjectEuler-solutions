@@ -1,0 +1,45 @@
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+
+using namespace std;
+
+
+int main(int argc, char* argv[])
+{
+
+	ifstream text("C:\\names.txt");
+
+
+	vector<string> content;
+	string token;
+
+	while (getline(text, token, ','))
+	{
+		content.push_back(token);
+	}
+	sort(content.begin(), content.end());
+
+	int counter = 0;
+	unsigned int totalSum = 0;
+
+	for (auto it = content.begin(); it != content.end(); it++)
+	{
+		counter++;
+		string word((*it).begin() + 1, (*it).end() - 1);
+
+		int sub_total = 0;
+		for (string::iterator it = word.begin(); it != word.end(); it++)
+		{
+
+			sub_total += *it - 64;
+		}
+
+		totalSum += sub_total*counter;
+	}
+	cout << totalSum << '\n';
+
+}
